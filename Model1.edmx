@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Students_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="contact_details">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="PhoneNumber" Type="char" MaxLength="10" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="70" />
+        </EntityType>
+        <EntityType Name="emergency_Contacts">
+          <Key>
+            <PropertyRef Name="EID" />
+          </Key>
+          <Property Name="EID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="FirstPhoneNumber" Type="char" MaxLength="10" />
+          <Property Name="SecondPhoneNumber" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="fieldOfStudy">
+          <Key>
+            <PropertyRef Name="FOSID" />
+          </Key>
+          <Property Name="FOSID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="FOSName" Type="varchar" MaxLength="80" />
+          <Property Name="Department" Type="varchar" MaxLength="80" />
+          <Property Name="YearOfStudy" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LogIn_details">
+          <Key>
+            <PropertyRef Name="emailAddress" />
+          </Key>
+          <Property Name="emailAddress" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="StudentID" Type="int" />
+          <Property Name="LogInpassword" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="personal_details">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" />
+          <Property Name="StudentNo" Type="char" MaxLength="8" />
+        </EntityType>
+        <Association Name="FK__contact_d__Stude__1273C1CD">
+          <End Role="personal_details" Type="Self.personal_details" Multiplicity="0..1" />
+          <End Role="contact_details" Type="Self.contact_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personal_details">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="contact_details">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__emergency__Stude__15502E78">
+          <End Role="personal_details" Type="Self.personal_details" Multiplicity="0..1" />
+          <End Role="emergency_Contacts" Type="Self.emergency_Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personal_details">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="emergency_Contacts">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__fieldOfSt__Stude__239E4DCF">
+          <End Role="personal_details" Type="Self.personal_details" Multiplicity="0..1" />
+          <End Role="fieldOfStudy" Type="Self.fieldOfStudy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personal_details">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="fieldOfStudy">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LogIn_det__Stude__267ABA7A">
+          <End Role="personal_details" Type="Self.personal_details" Multiplicity="0..1" />
+          <End Role="LogIn_details" Type="Self.LogIn_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personal_details">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LogIn_details">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Students_DBModelStoreContainer">
+          <EntitySet Name="contact_details" EntityType="Self.contact_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="emergency_Contacts" EntityType="Self.emergency_Contacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fieldOfStudy" EntityType="Self.fieldOfStudy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogIn_details" EntityType="Self.LogIn_details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personal_details" EntityType="Self.personal_details" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__contact_d__Stude__1273C1CD" Association="Self.FK__contact_d__Stude__1273C1CD">
+            <End Role="personal_details" EntitySet="personal_details" />
+            <End Role="contact_details" EntitySet="contact_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__emergency__Stude__15502E78" Association="Self.FK__emergency__Stude__15502E78">
+            <End Role="personal_details" EntitySet="personal_details" />
+            <End Role="emergency_Contacts" EntitySet="emergency_Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__fieldOfSt__Stude__239E4DCF" Association="Self.FK__fieldOfSt__Stude__239E4DCF">
+            <End Role="personal_details" EntitySet="personal_details" />
+            <End Role="fieldOfStudy" EntitySet="fieldOfStudy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LogIn_det__Stude__267ABA7A" Association="Self.FK__LogIn_det__Stude__267ABA7A">
+            <End Role="personal_details" EntitySet="personal_details" />
+            <End Role="LogIn_details" EntitySet="LogIn_details" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Students_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="contact_details">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="personal_details" Relationship="Self.FK__contact_d__Stude__1273C1CD" FromRole="contact_details" ToRole="personal_details" />
+        </EntityType>
+        <EntityType Name="emergency_Contacts">
+          <Key>
+            <PropertyRef Name="EID" />
+          </Key>
+          <Property Name="EID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="FirstPhoneNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="SecondPhoneNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="personal_details" Relationship="Self.FK__emergency__Stude__15502E78" FromRole="emergency_Contacts" ToRole="personal_details" />
+        </EntityType>
+        <EntityType Name="fieldOfStudy">
+          <Key>
+            <PropertyRef Name="FOSID" />
+          </Key>
+          <Property Name="FOSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="FOSName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="YearOfStudy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="personal_details" Relationship="Self.FK__fieldOfSt__Stude__239E4DCF" FromRole="fieldOfStudy" ToRole="personal_details" />
+        </EntityType>
+        <EntityType Name="LogIn_details">
+          <Key>
+            <PropertyRef Name="emailAddress" />
+          </Key>
+          <Property Name="emailAddress" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StudentID" Type="Int32" />
+          <Property Name="LogInpassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="personal_details" Relationship="Self.FK__LogIn_det__Stude__267ABA7A" FromRole="LogIn_details" ToRole="personal_details" />
+        </EntityType>
+        <EntityType Name="personal_details">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StudentNo" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="contact_details" Relationship="Self.FK__contact_d__Stude__1273C1CD" FromRole="personal_details" ToRole="contact_details" />
+          <NavigationProperty Name="emergency_Contacts" Relationship="Self.FK__emergency__Stude__15502E78" FromRole="personal_details" ToRole="emergency_Contacts" />
+          <NavigationProperty Name="fieldOfStudies" Relationship="Self.FK__fieldOfSt__Stude__239E4DCF" FromRole="personal_details" ToRole="fieldOfStudy" />
+          <NavigationProperty Name="LogIn_details" Relationship="Self.FK__LogIn_det__Stude__267ABA7A" FromRole="personal_details" ToRole="LogIn_details" />
+        </EntityType>
+        <Association Name="FK__contact_d__Stude__1273C1CD">
+          <End Role="personal_details" Type="Self.personal_details" Multiplicity="0..1" />
+          <End Role="contact_details" Type="Self.contact_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personal_details">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="contact_details">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__emergency__Stude__15502E78">
+          <End Role="personal_details" Type="Self.personal_details" Multiplicity="0..1" />
+          <End Role="emergency_Contacts" Type="Self.emergency_Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personal_details">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="emergency_Contacts">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__fieldOfSt__Stude__239E4DCF">
+          <End Role="personal_details" Type="Self.personal_details" Multiplicity="0..1" />
+          <End Role="fieldOfStudy" Type="Self.fieldOfStudy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personal_details">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="fieldOfStudy">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LogIn_det__Stude__267ABA7A">
+          <End Role="personal_details" Type="Self.personal_details" Multiplicity="0..1" />
+          <End Role="LogIn_details" Type="Self.LogIn_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personal_details">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="LogIn_details">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Students_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="contact_details" EntityType="Self.contact_details" />
+          <EntitySet Name="emergency_Contacts" EntityType="Self.emergency_Contacts" />
+          <EntitySet Name="fieldOfStudies" EntityType="Self.fieldOfStudy" />
+          <EntitySet Name="LogIn_details" EntityType="Self.LogIn_details" />
+          <EntitySet Name="personal_details" EntityType="Self.personal_details" />
+          <AssociationSet Name="FK__contact_d__Stude__1273C1CD" Association="Self.FK__contact_d__Stude__1273C1CD">
+            <End Role="personal_details" EntitySet="personal_details" />
+            <End Role="contact_details" EntitySet="contact_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK__emergency__Stude__15502E78" Association="Self.FK__emergency__Stude__15502E78">
+            <End Role="personal_details" EntitySet="personal_details" />
+            <End Role="emergency_Contacts" EntitySet="emergency_Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__fieldOfSt__Stude__239E4DCF" Association="Self.FK__fieldOfSt__Stude__239E4DCF">
+            <End Role="personal_details" EntitySet="personal_details" />
+            <End Role="fieldOfStudy" EntitySet="fieldOfStudies" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LogIn_det__Stude__267ABA7A" Association="Self.FK__LogIn_det__Stude__267ABA7A">
+            <End Role="personal_details" EntitySet="personal_details" />
+            <End Role="LogIn_details" EntitySet="LogIn_details" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Students_DBModelStoreContainer" CdmEntityContainer="Students_DBEntities">
+          <EntitySetMapping Name="contact_details">
+            <EntityTypeMapping TypeName="Students_DBModel.contact_details">
+              <MappingFragment StoreEntitySet="contact_details">
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="emergency_Contacts">
+            <EntityTypeMapping TypeName="Students_DBModel.emergency_Contacts">
+              <MappingFragment StoreEntitySet="emergency_Contacts">
+                <ScalarProperty Name="EID" ColumnName="EID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="FirstPhoneNumber" ColumnName="FirstPhoneNumber" />
+                <ScalarProperty Name="SecondPhoneNumber" ColumnName="SecondPhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fieldOfStudies">
+            <EntityTypeMapping TypeName="Students_DBModel.fieldOfStudy">
+              <MappingFragment StoreEntitySet="fieldOfStudy">
+                <ScalarProperty Name="FOSID" ColumnName="FOSID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="FOSName" ColumnName="FOSName" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="YearOfStudy" ColumnName="YearOfStudy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogIn_details">
+            <EntityTypeMapping TypeName="Students_DBModel.LogIn_details">
+              <MappingFragment StoreEntitySet="LogIn_details">
+                <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="LogInpassword" ColumnName="LogInpassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personal_details">
+            <EntityTypeMapping TypeName="Students_DBModel.personal_details">
+              <MappingFragment StoreEntitySet="personal_details">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="StudentNo" ColumnName="StudentNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
