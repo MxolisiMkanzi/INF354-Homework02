@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f07304aa44c14cd2953bfd63a75e4a27" Name="Diagram1">
+        <EntityTypeShape EntityType="Students_DBModel.contact_details" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Students_DBModel.emergency_Contacts" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Students_DBModel.fieldOfStudy" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Students_DBModel.LogIn_details" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Students_DBModel.personal_details" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="Students_DBModel.FK__contact_d__Stude__1273C1CD" ManuallyRouted="false" />
+        <AssociationConnector Association="Students_DBModel.FK__emergency__Stude__15502E78" ManuallyRouted="false" />
+        <AssociationConnector Association="Students_DBModel.FK__fieldOfSt__Stude__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="Students_DBModel.FK__LogIn_det__Stude__267ABA7A" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
